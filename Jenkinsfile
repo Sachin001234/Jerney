@@ -1,10 +1,26 @@
 pipeline {
     agent any
 
+    environment {
+        DB_PASSWORD = credentials('jerney-db-password')
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('Create Environment') {
+            steps {
+                sh '''
+                    cat > docker/.env <<EOF
+POSTGRES_USER=jerney_user
+POSTGRES_PASSWORD=${DB_PASSWORD}
+POSTGRES_DB=jerney_db
+EOF
+                '''
             }
         }
 
