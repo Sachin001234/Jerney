@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getPosts } from '../api';
 import PostCard from '../components/PostCard';
