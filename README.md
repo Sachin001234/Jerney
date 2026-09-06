@@ -179,3 +179,4 @@ The Vite dev server starts on `http://localhost:3000` and proxies `/api` request
 
 Built with 💜 by the Jerney team. No cap, this blog platform hits different. 🛤️
 # CI/CD webhook test
+Webhook test 2
