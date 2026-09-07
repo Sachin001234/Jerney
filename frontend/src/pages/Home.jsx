@@ -34,7 +34,7 @@ function Home() {
   return (
     <div>
       <div className="home-header">
-        <h1>Welcome to Jerney 🚀 – CI/CD Working! TEST 3</h1>
+        <h1>Welcome to Jerney 🚀 – CI/CD Working! TEST 4</h1>
         <p>A blog platform for the main characters. Share your thoughts, vibes, and hot takes.</p>
         <div className="vibe-tags">
           <span className="vibe-tag">✨ no cap content</span>
