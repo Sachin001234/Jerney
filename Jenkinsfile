@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        sonarQube 'sonar-scanner'
-    }
-
     environment {
         DB_PASSWORD = credentials('jerney-db-password')
     }
@@ -31,13 +27,17 @@ EOF
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=jerney \
-                        -Dsonar.projectName=jerney \
-                        -Dsonar.sources=.
-                    '''
+                script {
+                    def scannerHome = tool 'sonar-scanner'
+
+                    withSonarQubeEnv('sonarqube') {
+                        sh """
+                            ${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=jerney \
+                            -Dsonar.projectName=jerney \
+                            -Dsonar.sources=.
+                        """
+                    }
                 }
             }
         }
