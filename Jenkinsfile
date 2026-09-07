@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    tools {
+        sonarQube 'sonar-scanner'
+    }
 
     environment {
         DB_PASSWORD = credentials('jerney-db-password')
