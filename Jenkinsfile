@@ -27,17 +27,21 @@ EOF
 
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    def scannerHome = tool 'sonar-scanner'
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=jerney \
+                        -Dsonar.projectName=jerney \
+                        -Dsonar.sources=.
+                    '''
+                }
+            }
+        }
 
-                    withSonarQubeEnv('sonarqube') {
-                        sh """
-                            ${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=jerney \
-                            -Dsonar.projectName=jerney \
-                            -Dsonar.sources=.
-                        """
-                    }
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
