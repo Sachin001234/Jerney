@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -21,6 +22,19 @@ POSTGRES_PASSWORD=${DB_PASSWORD}
 POSTGRES_DB=jerney_db
 EOF
                 '''
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=jerney \
+                        -Dsonar.projectName=jerney \
+                        -Dsonar.sources=.
+                    '''
+                }
             }
         }
 
