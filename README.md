@@ -78,7 +78,6 @@ ssh -i your-key.pem ubuntu@<EC2_PUBLIC_IP>
 ```
 
 ### Step 3: Run the Setup Script
-
 The `deploy/setup.sh` script installs everything and configures the app automatically:
 
 ```bash
@@ -133,7 +132,7 @@ npm install
 export DB_HOST=localhost
 export DB_PORT=5432
 export DB_USER=jerney_user
-export DB_PASSWORD=jerney_pass_2026
+export DB_PASSWORD=<your_database_password>
 export DB_NAME=jerney_db
 export PORT=5000
 
@@ -178,5 +177,4 @@ The Vite dev server starts on `http://localhost:3000` and proxies `/api` request
 ---
 
 Built with 💜 by the Jerney team. No cap, this blog platform hits different. 🛤️
-# CI/CD webhook test
-Webhook test 2
+
